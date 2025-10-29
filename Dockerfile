@@ -3,7 +3,8 @@ FROM caddy:2.10.2-builder AS builder
 RUN xcaddy build \
     --with github.com/lucaslorentz/caddy-docker-proxy/v2 \
     --with github.com/caddy-dns/cloudflare \
-    --with github.com/tailscale/caddy-tailscale
+    --with github.com/tailscale/caddy-tailscale \
+    --with github.com/caddyserver/transform-encoder
 
 FROM caddy:2.10.2-alpine
 
