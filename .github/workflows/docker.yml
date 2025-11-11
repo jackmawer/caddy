@@ -274,27 +274,3 @@ jobs:
         id: inspect
         run: |
           docker buildx imagetools inspect '${{ env.GHCR_IMAGE }}:${{ steps.meta.outputs.version }}'
-
-  clean:
-    # This job cleans up untagged/old tags, since these are private images and I won't be referencing old tags.
-    name: Cleanup old tags
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-
-    needs:
-      - merge
-      # Depend on the merge job to ensure the image is built before cleanup.
-    steps:
-      - name: Cleanup untagged images
-        # This step downloads the digest files uploaded in the build job.
-        # It uses the actions/download-artifact action to download the artifacts with the pattern digests-*.
-        # The downloaded files are merged into the /tmp/digests directory.
-        uses: quartx-analytics/ghcr-cleaner@v1
-        with:
-          owner-type: user
-          token: ${{ github.token }}
-          repository_owner: ${{ github.repository_owner }}
-          repository-name: ${{ github.repository }}
-          delete-untagged: true
-          keep-at-most: 5
