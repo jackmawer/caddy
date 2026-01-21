@@ -34,14 +34,14 @@
     }
 
     # The Blacklist
-    #@blocked dynamic_client_ip list {
-    #    url https://raw.githubusercontent.com/borestad/blocklist-abuseipdb/refs/heads/main/abuseipdb-s100-30d.ipv4
+    @blocked dynamic_client_ip list {
+        url https://raw.githubusercontent.com/borestad/blocklist-abuseipdb/refs/heads/main/abuseipdb-s100-30d.ipv4
     #    url https://raw.githubusercontent.com/bitwire-it/ipblocklist/refs/heads/main/inbound.txt
-    #    interval 6h
-    #    timeout 15s
-    #    retries 2
-    #}
-    #abort @blocked
+        interval 6h
+        timeout 15s
+        retries 2
+    }
+    abort @blocked
 }
 
 (errorhandler) {
