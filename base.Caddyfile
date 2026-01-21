@@ -28,7 +28,7 @@
 (errorhandler) {
     handle_errors 502 503 {
         root * /srv
-        rewrite * error.html
+        rewrite /error.html
         templates
         file_server
     }
