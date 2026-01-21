@@ -61,6 +61,9 @@
 }
 
 # Block irritating bots searching publically available certificate records and spamming up the logs
-{x*}.mc.mawersoft.co.uk {
+*.*.*.*.*.*.mc.mawersoft.co.uk, *.*.*.*.*.mc.mawersoft.co.uk, *.*.*.*.mc.mawersoft.co.uk, *.*.*.mc.mawersoft.co.uk, *.*.mc.mawersoft.co.uk, *.mc.mawersoft.co.uk {
+    log {
+        output discard
+    }
     error * "Gone" 410
 }
