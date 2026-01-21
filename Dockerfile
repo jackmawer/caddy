@@ -11,5 +11,7 @@ FROM caddy:2.10.2-alpine
 
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 
+COPY base.Caddyfile /etc/caddy/Caddyfile
+ENV CADDY_DOCKER_CADDYFILE_PATH /etc/caddy/Caddyfile
 
 CMD ["caddy", "docker-proxy"]

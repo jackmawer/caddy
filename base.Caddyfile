@@ -1,0 +1,65 @@
+{
+    # Top level config which has secrets removed but must be defined in end use
+    # email <SNIP>
+    # acme_dns cloudflare <SNIP>
+    log {
+        format json
+    }
+    metrics {
+        per_host
+    }
+    on_demand_tls {
+        ask http://127.0.0.1:80/cert
+    }
+    tailscale: {
+        state_dir /var/lib/tailscale
+    }
+}
+
+(default) {
+    log {
+        format json
+        level debug
+        output stdout
+    }
+}
+
+(errorhandler) {
+    handle_errors 502 {
+        header Content-Type text/html
+        respond `<!DOCTYPE html> <html> <head> <title>{err.status_code} {err.status_text}</title> <style> body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; background: rgb(0, 14, 7); background: linear-gradient(57deg, rgba(147, 233, 190, 0.75) 25%, rgba(133, 226, 255, 0.75) 75%), rgb(0, 14, 7); color: rgba(32, 32, 32, .8); overflow: hidden; margin: 0; text-align: center; } h1 { font-size: 1.5rem; } h2 { font-size: 1rem; } .wrapper { display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100vw; height: 100vh; } h1 svg { position: relative; top: 3px; } </style> <noscript> <meta http-equiv="refresh" content="5" /> </noscript> </head> <body> <div class="wrapper"> <svg width="128" height="128" viewBox="0 0 36 36" role="img"> <defs id="defs3342"> <linearGradient id="linearGradient4146"> <stop style="stop-color:#93e9be;stop-opacity:1" offset="0" id="stop4148" /> <stop style="stop-color:#85e2ff;stop-opacity:1" offset="1" id="stop4150" /> </linearGradient> <linearGradient inkscape:collect="always" xlink:href="#linearGradient4146" id="linearGradient4152" x1="7.4639301" y1="6.7522478" x2="32.772919" y2="30.92008" gradientUnits="userSpaceOnUse" /> </defs> <path fill="#FFCC4D" d="M35.361 29.179C26.777 4.5 23.551 4.5 22 4.5c-3.125 0-4.538 3.18-5.785 5.985-.1.225-.217.485-.339.754-.486.939-1.266.939-1.752 0-.122-.269-.239-.529-.339-.754C12.538 7.68 11.125 4.5 8 4.5 5.696 4.5 2.534 6.583.548 16.51c-.271 1.354.607 2.67 1.96 2.941 1.351.272 2.67-.607 2.942-1.96.547-1.835 1.748-5.663 1.748-5.663.429-1.001 1.177-1.031 1.672-.078.125.273.243.537.344.765.183.412.371.831.566 1.248l.003.007c.195.416.398.828.615 1.226l.003.004c1.043 1.917 2.394 3.5 4.598 3.5 2.661 0 4.08-2.307 5.212-4.724l.012-.024c.193-.413.379-.829.561-1.237.091-.205.197-.441.308-.685.446-.881 1.188-.803 1.654.182 0 0 3.902 8.748 5.594 12.519.801 2.095 1.583 4.231 2.299 6.29.359 1.032 1.327 1.68 2.361 1.68.272 0 .55-.045.821-.14 1.304-.454 1.993-1.879 1.54-3.182z" id="path3338" style="fill-opacity:1;fill:url(#linearGradient4152)" /> </svg> <h1> <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 16 16"> <path fill="currentColor" d="M7.32283581,2.38084737 L1.1033431,12.8646462 C0.964872768,13.0994562 0.965601127,13.3882972 1.105254,13.6224431 C1.24490688,13.8565891 1.50228569,14.0004977 1.78050731,13.9999987 L14.2194927,13.9999987 C14.4977143,14.0004977 14.7550931,13.8565891 14.894746,13.6224431 C15.0343989,13.3882972 15.0351272,13.0994562 14.8966569,12.8646462 L8.67195525,2.38084737 C8.52724559,2.13540038 8.25409089,1.98880958 7.96353732,2.00066887 C7.69718271,2.01236651 7.4554747,2.15579084 7.32283581,2.38084737 Z M8.00000001,5.33381373 C8.36823065,5.33381373 8.66674629,5.63228019 8.66674629,6.0004427 L8.50005972,9.00028141 C8.50005972,9.27639913 8.27617299,9.50025314 8.00000001,9.50025314 C7.72382536,9.50025314 7.49994029,9.27639913 7.49994029,9.00028141 L7.33325372,6.0004427 C7.33325372,5.63228019 7.6317677,5.33381373 8.00000001,5.33381373 Z M8.00000001,10.3335394 C8.46029164,10.3335394 8.83343287,10.7066183 8.83343287,11.1668256 C8.83343287,11.6270329 8.46029164,12.0001118 8.00000001,12.0001118 C7.53970838,12.0001118 7.16656715,11.6270329 7.16656715,11.1668256 C7.16656715,10.7066183 7.53970838,10.3335394 8.00000001,10.3335394 Z" /> </svg> <br /> This service is currently unavailable. </h1> <h2> It may be temporarily offline, or service may have permanently ceased. </h2> <p style="color: gray;"><small>{err.status_code} {err.status_text}</small></p> </div> <script defer> setInterval(() => { fetch(window.location.href).then( (resp) => { if (resp.status < 400) location.reload(); } ); }, 5000); </script> </body> </html>` 502
+        templates
+    }
+    handle_errors 503 {
+        header Content-Type text/html
+        respond `<!DOCTYPE html> <html> <head> <title>{err.status_code} {err.status_text}</title> <style> body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; background: rgb(0, 14, 7); background: linear-gradient(57deg, rgba(147, 233, 190, 0.75) 25%, rgba(133, 226, 255, 0.75) 75%), rgb(0, 14, 7); color: rgba(32, 32, 32, .8); overflow: hidden; margin: 0; text-align: center; } h1 { font-size: 1.5rem; } h2 { font-size: 1rem; } .wrapper { display: flex; justify-content: center; align-items: center; flex-direction: column; width: 100vw; height: 100vh; } h1 svg { position: relative; top: 3px; } </style> <noscript> <meta http-equiv="refresh" content="5" /> </noscript> </head> <body> <div class="wrapper"> <svg width="128" height="128" viewBox="0 0 36 36" role="img"> <defs id="defs3342"> <linearGradient id="linearGradient4146"> <stop style="stop-color:#93e9be;stop-opacity:1" offset="0" id="stop4148" /> <stop style="stop-color:#85e2ff;stop-opacity:1" offset="1" id="stop4150" /> </linearGradient> <linearGradient inkscape:collect="always" xlink:href="#linearGradient4146" id="linearGradient4152" x1="7.4639301" y1="6.7522478" x2="32.772919" y2="30.92008" gradientUnits="userSpaceOnUse" /> </defs> <path fill="#FFCC4D" d="M35.361 29.179C26.777 4.5 23.551 4.5 22 4.5c-3.125 0-4.538 3.18-5.785 5.985-.1.225-.217.485-.339.754-.486.939-1.266.939-1.752 0-.122-.269-.239-.529-.339-.754C12.538 7.68 11.125 4.5 8 4.5 5.696 4.5 2.534 6.583.548 16.51c-.271 1.354.607 2.67 1.96 2.941 1.351.272 2.67-.607 2.942-1.96.547-1.835 1.748-5.663 1.748-5.663.429-1.001 1.177-1.031 1.672-.078.125.273.243.537.344.765.183.412.371.831.566 1.248l.003.007c.195.416.398.828.615 1.226l.003.004c1.043 1.917 2.394 3.5 4.598 3.5 2.661 0 4.08-2.307 5.212-4.724l.012-.024c.193-.413.379-.829.561-1.237.091-.205.197-.441.308-.685.446-.881 1.188-.803 1.654.182 0 0 3.902 8.748 5.594 12.519.801 2.095 1.583 4.231 2.299 6.29.359 1.032 1.327 1.68 2.361 1.68.272 0 .55-.045.821-.14 1.304-.454 1.993-1.879 1.54-3.182z" id="path3338" style="fill-opacity:1;fill:url(#linearGradient4152)" /> </svg> <h1> <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 16 16"> <path fill="currentColor" d="M7.32283581,2.38084737 L1.1033431,12.8646462 C0.964872768,13.0994562 0.965601127,13.3882972 1.105254,13.6224431 C1.24490688,13.8565891 1.50228569,14.0004977 1.78050731,13.9999987 L14.2194927,13.9999987 C14.4977143,14.0004977 14.7550931,13.8565891 14.894746,13.6224431 C15.0343989,13.3882972 15.0351272,13.0994562 14.8966569,12.8646462 L8.67195525,2.38084737 C8.52724559,2.13540038 8.25409089,1.98880958 7.96353732,2.00066887 C7.69718271,2.01236651 7.4554747,2.15579084 7.32283581,2.38084737 Z M8.00000001,5.33381373 C8.36823065,5.33381373 8.66674629,5.63228019 8.66674629,6.0004427 L8.50005972,9.00028141 C8.50005972,9.27639913 8.27617299,9.50025314 8.00000001,9.50025314 C7.72382536,9.50025314 7.49994029,9.27639913 7.49994029,9.00028141 L7.33325372,6.0004427 C7.33325372,5.63228019 7.6317677,5.33381373 8.00000001,5.33381373 Z M8.00000001,10.3335394 C8.46029164,10.3335394 8.83343287,10.7066183 8.83343287,11.1668256 C8.83343287,11.6270329 8.46029164,12.0001118 8.00000001,12.0001118 C7.53970838,12.0001118 7.16656715,11.6270329 7.16656715,11.1668256 C7.16656715,10.7066183 7.53970838,10.3335394 8.00000001,10.3335394 Z" /> </svg> <br /> This service is currently unavailable. </h1> <h2> It may be temporarily offline, or service may have permanently ceased. </h2> <p style="color: gray;"><small>{err.status_code} {err.status_text}</small></p> </div> <script defer> setInterval(() => { fetch(window.location.href).then( (resp) => { if (resp.status < 400) location.reload(); } ); }, 5000); </script> </body> </html>` 503
+        templates
+    }
+}
+
+:2020 {
+    reverse_proxy localhost:2019 {
+        header_up -Host
+        header_up -X-*
+    }
+}
+
+:80 {
+    import default
+    import errorhandler
+
+    handle_path /cert/* {
+        respond 200
+    }
+
+    handle_path /metrics/* {
+        metrics /
+    }
+
+    error * "Service unavailable" 503
+}
+
+# Block irritating bots searching publically available certificate records and spamming up the logs
+{x*}.mc.mawersoft.co.uk {
+    error * "Gone" 410
+}
