@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>{{ph http.error.status_code}} {{ph http.error.status_text}}</title>
+    <title>{{ph "http.error.status_code"}} {{ph "http.error.status_text"}}</title>
     <style>
         body {
             font-family: ui-sans-serif,system-ui,sans-serif;
@@ -52,7 +52,7 @@
         <h2>
             We're sorry that our website is currently unavailable.<br />Please check back shortly to view our full product catalog online.<br /><br />You can still contact us during business hours at 01707 375 551, or email us at enquiries@hertsgm.co.uk.
         </h2>
-        <p style="color: gray;"><small>{{ph http.error.status_code}} {{ph http.error.status_text}}</small></p>
+        <p style="color: gray;"><small>{{ph "http.error.status_code"}} {{ph "http.error.status_text"}}</small></p>
     </div>
     <script defer>
         setInterval(() => {
