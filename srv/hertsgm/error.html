@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{err.status_code}} {{err.status_text}}</title>
+    <style>
+        body {
+            font-family: ui-sans-serif,system-ui,sans-serif;
+            background: rgb(230, 255, 230);
+            color: rgba(32, 32, 32, .8);
+            overflow: hidden;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1rem;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        h1 svg {
+            position: relative;
+            top: 3px;
+        }
+    </style>
+    <noscript>
+        <meta http-equiv="refresh" content="5" />
+    </noscript>
+</head>
+
+<body>
+    <div class="wrapper"> 
+        <h1> 
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 16 16">
+                <path fill="currentColor"
+                    d="M7.32283581,2.38084737 L1.1033431,12.8646462 C0.964872768,13.0994562 0.965601127,13.3882972 1.105254,13.6224431 C1.24490688,13.8565891 1.50228569,14.0004977 1.78050731,13.9999987 L14.2194927,13.9999987 C14.4977143,14.0004977 14.7550931,13.8565891 14.894746,13.6224431 C15.0343989,13.3882972 15.0351272,13.0994562 14.8966569,12.8646462 L8.67195525,2.38084737 C8.52724559,2.13540038 8.25409089,1.98880958 7.96353732,2.00066887 C7.69718271,2.01236651 7.4554747,2.15579084 7.32283581,2.38084737 Z M8.00000001,5.33381373 C8.36823065,5.33381373 8.66674629,5.63228019 8.66674629,6.0004427 L8.50005972,9.00028141 C8.50005972,9.27639913 8.27617299,9.50025314 8.00000001,9.50025314 C7.72382536,9.50025314 7.49994029,9.27639913 7.49994029,9.00028141 L7.33325372,6.0004427 C7.33325372,5.63228019 7.6317677,5.33381373 8.00000001,5.33381373 Z M8.00000001,10.3335394 C8.46029164,10.3335394 8.83343287,10.7066183 8.83343287,11.1668256 C8.83343287,11.6270329 8.46029164,12.0001118 8.00000001,12.0001118 C7.53970838,12.0001118 7.16656715,11.6270329 7.16656715,11.1668256 C7.16656715,10.7066183 7.53970838,10.3335394 8.00000001,10.3335394 Z" />
+            </svg><br />
+            Our site will be back shortly.
+        </h1>
+        <h2>
+            We're sorry that our website is currently unavailable.<br />Please check back shortly to view our full product catalog online.<br /><br />You can still contact us during business hours at 01707 375 551, or email us at enquiries@hertsgm.co.uk.
+        </h2>
+        <p style="color: gray;"><small>{{err.status_code}} {{err.status_text}}</small></p>
+    </div>
+    <script defer>
+        setInterval(() => {
+            fetch(window.location.href).then((resp) => { 
+                if (resp.status < 400) location.reload(); 
+            }); 
+        }, 1000);
+    </script>
+</body>
+
+</html>
