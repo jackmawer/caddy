@@ -5,7 +5,9 @@ RUN xcaddy build \
     --with github.com/caddy-dns/cloudflare \
     --with github.com/tailscale/caddy-tailscale \
     --with github.com/caddyserver/transform-encoder \
-    --with github.com/hslatman/caddy-crowdsec-bouncer/http
+    --with github.com/hslatman/caddy-crowdsec-bouncer/http \
+    --with github.com/tuzzmaniandevil/caddy-dynamic-clientip \
+    --with github.com/monobilisim/caddy-ip-list
 
 FROM caddy:2.10.2-alpine
 

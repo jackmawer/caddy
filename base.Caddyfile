@@ -15,6 +15,13 @@
     metrics {
         per_host
     }
+    trusted_proxies list {
+        url https://www.cloudflare.com/ips-v4
+        url https://www.cloudflare.com/ips-v6
+        interval 12h
+        timeout 15s
+        retries 2
+    }
 }
 
 (default) {
