@@ -29,6 +29,8 @@
         stale 1h
         default_cache_control "no-store"
     }
+    order cache before rewrite
+    order header after cache
 }
 
 (default) {
