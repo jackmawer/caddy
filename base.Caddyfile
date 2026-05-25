@@ -24,6 +24,11 @@
             retries 2
         }
     }
+    cache {
+        ttl 5m
+        stale 1h
+        default_cache_control "no-store"
+    }
 }
 
 (default) {
@@ -41,6 +46,8 @@
         retries 2
     }
     abort @blocked
+
+    cache
 }
 
 (errorhandler) {

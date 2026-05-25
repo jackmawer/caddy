@@ -7,9 +7,10 @@ RUN xcaddy build \
     --with github.com/caddyserver/transform-encoder \
     --with github.com/hslatman/caddy-crowdsec-bouncer/http \
     --with github.com/tuzzmaniandevil/caddy-dynamic-clientip \
-    --with github.com/monobilisim/caddy-ip-list
+    --with github.com/monobilisim/caddy-ip-list \
+    --with github.com/caddyserver/cache-handler
 
-FROM caddy:2.11.2-alpine
+FROM caddy:2.11.3-alpine
 
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 
