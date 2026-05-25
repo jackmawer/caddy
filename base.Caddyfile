@@ -57,6 +57,7 @@
 }
 
 (default) {
+    log
     # The Blacklist
     @blocked dynamic_client_ip list {
         url https://raw.githubusercontent.com/borestad/blocklist-abuseipdb/refs/heads/main/abuseipdb-s100-30d.ipv4
@@ -65,7 +66,6 @@
         retries 2
     }
     abort @blocked
-
     cache
 }
 
