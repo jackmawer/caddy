@@ -58,12 +58,6 @@
 }
 
 (default) {
-    log {
-        format json
-        level debug
-        output stdout
-    }
-
     # The Blacklist
     @blocked dynamic_client_ip list {
         url https://raw.githubusercontent.com/borestad/blocklist-abuseipdb/refs/heads/main/abuseipdb-s100-30d.ipv4
