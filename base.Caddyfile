@@ -29,7 +29,6 @@
         exclude http.log.access
     }
     
-    auto_https prefer_wildcard
     on_demand_tls {
         ask http://127.0.0.1:80/cert
     }
