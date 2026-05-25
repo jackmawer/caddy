@@ -51,6 +51,7 @@
         ttl 5m
         stale 1h
         default_cache_control "no-store"
+        otter
     }
     order cache before rewrite
     order header after cache

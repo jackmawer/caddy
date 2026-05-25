@@ -8,7 +8,8 @@ RUN xcaddy build \
     --with github.com/hslatman/caddy-crowdsec-bouncer/http \
     --with github.com/tuzzmaniandevil/caddy-dynamic-clientip \
     --with github.com/monobilisim/caddy-ip-list \
-    --with github.com/caddyserver/cache-handler
+    --with github.com/caddyserver/cache-handler \
+    --with github.com/darkweak/storages/otter/caddy
 
 FROM caddy:2.11.3-alpine
 
