@@ -52,6 +52,10 @@
         stale 1h
         default_cache_control "no-store"
         otter
+        timeout {
+            backend 95s
+            cache 100ms
+        }
     }
     order cache before rewrite
     order header after cache
@@ -67,7 +71,7 @@
         retries 2
     }
     abort @blocked
-    #cache
+    cache
 }
 
 (errorhandler) {
