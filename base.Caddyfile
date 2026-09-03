@@ -103,6 +103,10 @@
         metrics /
     }
 
+    handle /healthz {
+        respond "ok" 200
+    }
+
     error * "Service unavailable" 503
 }
 
