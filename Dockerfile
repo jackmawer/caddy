@@ -1,6 +1,6 @@
 FROM caddy:2.11.4-builder AS builder
 
-RUN xcaddy build \
+RUN xcaddy build master \
     --with github.com/lucaslorentz/caddy-docker-proxy/v2 \
     --with github.com/caddy-dns/cloudflare \
     --with github.com/tailscale/caddy-tailscale \
