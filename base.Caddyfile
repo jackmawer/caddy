@@ -71,7 +71,9 @@
         retries 2
     }
     abort @blocked
-    cache
+    # Bypass cookie for caching
+    @cacheable not header_regexp Cookie (^|;\s*)nocache=
+	cache @cacheable
 }
 
 (errorhandler) {
