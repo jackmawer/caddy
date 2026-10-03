@@ -51,7 +51,12 @@
         ttl 5m
         stale 1h
         default_cache_control "no-store"
-        otter
+        max_cacheable_body_bytes 2097152 # don't buffer/cache bodies over 2 MiB
+        otter {
+            configuration {
+                size 1000
+            }
+        }
         timeout {
             backend 95s
             cache 100ms
