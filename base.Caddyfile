@@ -75,7 +75,8 @@
         timeout 15s
         retries 2
     }
-    abort @blocked
+    header @blocked Cache-Control "no-store"
+    respond @blocked "https://www.abuseipdb.com/account/takedowns" 403
     # Bypass cookie for caching
     @cacheable not header_regexp Cookie (^|;\s*)nocache=
 	cache @cacheable
